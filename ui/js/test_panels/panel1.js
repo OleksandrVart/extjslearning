@@ -31,7 +31,25 @@ panel1 = new Ext.Panel({
             xtype: 'panel',
             flex: 1,
             padding: 10,
-            html: 'Тут решение'
+            html: 'Тут решение',
+            items: [
+                new Ext.Button({
+                    text: 'Кнопка',
+                    style: {
+                        margin: '10px',
+                    },
+                    handler: function() {
+                        var me = this,
+                            panel = this.findParentByType('panel');
+                        panel.add(this.cloneConfig());
+                        panel.doLayout();
+
+                        setTimeout(function() {
+                            me.disable();
+                        }, 3000);
+                    }
+                })
+            ]
         }
     ]
 });
