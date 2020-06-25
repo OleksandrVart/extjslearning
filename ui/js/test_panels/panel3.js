@@ -1,3 +1,97 @@
+
+var result = new Ext.Panel({
+    xtype:'panel',
+    title: 'Результат',
+    style: {
+        textAlign: 'center',
+    },
+    padding: 20,
+    margin: 50,
+    items: []
+});
+
+var form = new Ext.FormPanel({
+    frame:true,
+    layout: 'column',
+    border: false,
+    defaults: {
+        columnWidth: '.5',
+        border: false
+    },
+    items: [{
+        xtype:'fieldset',
+        title: 'Чекбоксы',
+        labelWidth: 20,
+        autoHeight:true,
+        defaultType: 'checkbox',
+        items :[{
+            boxLabel: 'Checkbox-1',
+            name: 'checkbox-1'
+        }, {
+            boxLabel: 'Checkbox-2',
+            name: 'checkbox-2'
+        }, {
+            boxLabel: 'Checkbox-3',
+            name: 'checkbox-3'
+        }, {
+            boxLabel: 'Checkbox-4',
+            name: 'checkbox-4'
+        }]
+    },{
+        xtype:'fieldset',
+        title: 'Радио',
+        autoHeight: true,
+        labelWidth: 20,
+        defaultType: 'radio',
+        items :[{
+            checked: true,
+            boxLabel: 'Номер 1',
+            name: 'radio',
+            inputValue: '1'
+        }, {
+            boxLabel: 'Номер 2',
+            name: 'radio',
+            inputValue: '2'
+        }, {
+            boxLabel: 'Номер 3',
+            name: 'radio',
+            inputValue: '3'
+        }]
+    }],
+    buttonAlign: 'center',
+    buttons: [{
+        text: 'Выбрать',
+        handler: function(){
+            var data = form.getForm().getFieldValues(),
+                text = [],
+                row = '';
+            console.log(data);
+            console.log(result.items);
+            for (var key in data) {
+                if (key !== 'radio') {
+                    if(data[key]) {
+                        row = key + ' - нажат;';
+                    } else {
+                        row = key + ' - не нажат;';
+                    }
+                    text.push({
+                        xtype:'box',
+                        html: row,
+                    })
+                } else {
+                    text.push({
+                        xtype:'box',
+                        html: 'Выбран переключатель №'+ form.getForm().getValues().radio,
+                    })
+                }
+            }
+            result.removeAll();
+            result.add(text);
+            result.doLayout();
+        }
+    }]
+});
+
 panel3 = new Ext.Panel({
     title: 'Задание 3',
     listeners: {
@@ -33,7 +127,10 @@ panel3 = new Ext.Panel({
             xtype: 'panel',
             flex: 1,
             padding: 10,
-            html: 'Тут решение'
+            items: [
+                form,
+                result
+            ]
         }
     ]
 });
