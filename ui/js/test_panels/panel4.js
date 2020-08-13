@@ -1,3 +1,38 @@
+var date = new Ext.form.DateField({
+    fieldLabel: 'Выберите дату',
+    format: 'd.m.Y',
+    altFormats: 'F d, Y|Y-m-d|Y-n-d|d.m.Y',
+    value: new Date(),
+    name: 'choice_date'
+});
+
+var form = new Ext.FormPanel({
+    border: false,
+    width: 400,
+    style: {
+        margin: '0 auto',
+        padding: '10px'
+    },
+    items: [
+        date,
+        {
+            xtype: 'displayfield',
+            fieldLabel: "Выбраная дата",
+            name: 'cur_choice_date',
+            value: '',
+        }
+    ],
+    buttonAlign: 'center',
+    buttons: [{
+        text: 'Выбрать',
+        handler: function(){
+            var choice = form.getForm().findField('choice_date').getValue();
+            var res = new Date(choice);
+            form.getForm().findField('cur_choice_date').setValue(res.format("Y-m-d"));
+        }
+    }]
+});
+
 panel4 = new Ext.Panel({
     title: 'Задание 4',
     listeners: {
@@ -32,7 +67,9 @@ panel4 = new Ext.Panel({
             xtype: 'panel',
             flex: 1,
             padding: 10,
-            html: 'Тут решение'
+            items: [
+                form
+            ]
         }
     ]
 });

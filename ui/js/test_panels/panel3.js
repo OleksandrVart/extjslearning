@@ -65,8 +65,6 @@ var form = new Ext.FormPanel({
             var data = form.getForm().getFieldValues(),
                 text = [],
                 row = '';
-            console.log(data);
-            console.log(result.items);
             for (var key in data) {
                 if (key !== 'radio') {
                     if(data[key]) {
