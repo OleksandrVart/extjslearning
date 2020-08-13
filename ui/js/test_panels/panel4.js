@@ -7,8 +7,10 @@ var date = new Ext.form.DateField({
 });
 
 var form = new Ext.FormPanel({
-    border: false,
-    width: 400,
+    // border: false,
+    width: 350,
+    padding: 10,
+    labelWidth: 150,
     style: {
         margin: '0 auto',
         padding: '10px'
