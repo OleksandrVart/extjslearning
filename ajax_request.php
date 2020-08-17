@@ -18,7 +18,17 @@ switch ($cmd) {
             3 => ['id' => 4, 'name' => 'Load name 4'.$add],
         ];
         break;
-    case 'task_3':
+
+    case 'task_5':
+        $data = [
+            0 => ['name' => 'Александр', 'sex' => 'муж', 'status' => 1],
+            1 => ['name' => 'Игорь', 'sex' => 'муж', 'status' => 1],
+            2 => ['name' => 'Таня', 'sex' => 'жен', 'status' => 1],
+            3 => ['name' => 'Вова', 'sex' => 'муж', 'status' => 0],
+            4 => ['name' => 'Ира', 'sex' => 'жен', 'status' => 1],
+            5 => ['name' => 'Сергей', 'sex' => 'муж', 'status' => 1],
+            6 => ['name' => 'Аня', 'sex' => 'жен', 'status' => 0],
+        ];
         break;
 }
 
